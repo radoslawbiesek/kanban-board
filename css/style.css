@@ -1,0 +1,173 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,500");
+* {
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  background-color: #fff;
+}
+
+button {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+.main-nav {
+  height: 50px;
+  background-color: #263238;
+  color: #fff;
+}
+
+.main-nav__header {
+  margin: 0;
+  margin-left: 20px;
+  line-height: 50px;
+}
+
+.column-container,
+.column-container > div {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: start;
+      justify-content: flex-start;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-align: stretch;
+      align-items: stretch;
+}
+
+@media (max-width: 680px) {
+  .column-container,
+  .column-container > div {
+    -ms-flex-pack: center;
+        justify-content: center;
+  }
+}
+
+.column {
+  width: 300px;
+  min-height: 400px;
+  margin: 20px 10px;
+  padding: 0 10px 10px 10px;
+  border-radius: 4px;
+  background-color: #ECEFF1;
+  min-height: 300px;
+  color: #263238;
+  position: relative;
+}
+
+.column__header {
+  overflow: hidden;
+}
+
+.column__title, .column__btn-create-column {
+  margin: 0;
+  font-size: 18px;
+  line-height: 40px;
+  font-weight: 500;
+  padding: 0;
+}
+
+.column__btn-delete {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 5px;
+  font-size: 16px;
+  line-height: 100%;
+}
+
+.column__cards-list {
+  padding: 0;
+  margin: 0;
+  min-height: 1px;
+}
+
+.column__cards-list li {
+  list-style-type: none;
+}
+
+.column__add-card-btn {
+  height: 100%;
+  width: 100%;
+}
+
+.card {
+  position: relative;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14);
+  background-color: #fff;
+  color: #263238;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.card:hover {
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14);
+}
+
+.card:first-child, .card--add {
+  margin-top: 0;
+}
+
+.card--add {
+  background-color: #f5f6f7;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.card__btn-delete {
+  position: absolute;
+  top: 3px;
+  right: 0;
+  padding: 5px;
+  font-size: 12px;
+  line-height: 100%;
+}
+
+.card__label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 5px;
+  width: 100%;
+}
+
+.card__label--red {
+  background-color: #B71C1C;
+}
+
+.card__label--green {
+  background-color: #1B5E20;
+}
+
+.card__label--blue {
+  background-color: #263238;
+}
+
+.card__label--yellow {
+  background-color: #FFD600;
+}
+
+.card__label--orange {
+  background-color: #E65100;
+}
+
+.card__label--black {
+  background-color: #000000;
+}
+
+.card__label--grey {
+  background-color: #424242;
+}
+/*# sourceMappingURL=style.css.map */

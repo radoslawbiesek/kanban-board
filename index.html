@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kanban board</title>
+  <link rel="stylesheet" href="vendor/normalize.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<div id="board" class="board">
+        <nav class="main-nav">
+            <h2 class="main-nav__header"><i class="fas fa-tasks"></i> Kanban board</h1>
+        </nav>           
+        <div class="column-container">
+            <!-- Columns will be added here -->
+            <div class="column column--add">
+                <header>
+                    <button class="column__btn-create-column"><i class="fas fa-plus"></i> Add another column</button>
+                </header>
+            </div>
+        </div>
+	</div>
+
+    <script id="column-template" type="x-tmpl-mustache">
+        <div class="column">
+            <button class="column__btn-delete"><i class="fas fa-times"></i></button>
+            <header class="column__header">
+                <h3 class="column__title">{{ name }}</h2>    
+            </header>
+            <section class="column__content">
+                <ul id={{ id }} class="column__cards-list">
+                <!-- Cards will be added here -->
+                </ul>
+                <div class="card card--add">
+                    <button class="column__add-card-btn"><i class="fas fa-plus"></i> Add another card</button>
+                </div>
+            </section>
+        </div>
+    </script>
+
+    <script id="card-template" type="x-tmpl-mustache">
+        <div class="card"> 
+          <div class="card__label card__label--blue"></div>
+          <p class="card__description">{{ description }}</p>
+          <button class="card__btn-delete"><i class="fas fa-times"></i></button>       
+        </div
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.6.0/Sortable.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
