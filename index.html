@@ -14,10 +14,10 @@
             <h2 class="main-nav__header"><i class="fas fa-tasks"></i> Kanban board</h1>
         </nav>           
         <div class="column-container">
-            <!-- Columns will be added here -->
-            <div class="column column--add">
+
+            <div class="column column--add" id='column-add'>
                 <header>
-                    <button class="column__btn-create-column"><i class="fas fa-plus"></i> Add another column</button>
+                    <button class="column__btn-add-column" data-action="add-column"><i class="fas fa-plus"></i> Add another column</button>
                 </header>
             </div>
         </div>
@@ -25,16 +25,16 @@
 
     <script id="column-template" type="x-tmpl-mustache">
         <div class="column">
-            <button class="column__btn-delete"><i class="fas fa-times"></i></button>
+            <button class="column__btn-delete"><i class="fas fa-times" data-action="delete-column"></i></button>
             <header class="column__header">
                 <h3 class="column__title">{{ name }}</h2>    
             </header>
             <section class="column__content">
                 <ul id={{ id }} class="column__cards-list">
-                <!-- Cards will be added here -->
+                
                 </ul>
                 <div class="card card--add">
-                    <button class="column__add-card-btn"><i class="fas fa-plus"></i> Add another card</button>
+                    <button class="column__btn-add-card" data-action="add-card"><i class="fas fa-plus"></i> Add another card</button>
                 </div>
             </section>
         </div>
@@ -44,7 +44,7 @@
         <div class="card"> 
           <div class="card__label card__label--blue"></div>
           <p class="card__description">{{ description }}</p>
-          <button class="card__btn-delete"><i class="fas fa-times"></i></button>       
+          <button class="card__btn-delete"><i class="fas fa-times" data-action="delete-card"></i></button>       
         </div
     </script>
 

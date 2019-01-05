@@ -22,7 +22,7 @@ button {
 
 .main-nav {
   height: 50px;
-  background-color: #263238;
+  background-color: #37474F;
   color: #fff;
 }
 
@@ -68,7 +68,7 @@ button {
   overflow: hidden;
 }
 
-.column__title, .column__btn-create-column {
+.column__title, .column__btn-add-column {
   margin: 0;
   font-size: 18px;
   line-height: 40px;
@@ -95,7 +95,7 @@ button {
   list-style-type: none;
 }
 
-.column__add-card-btn {
+.column__btn-add-card {
   height: 100%;
   width: 100%;
 }
@@ -152,7 +152,7 @@ button {
 }
 
 .card__label--blue {
-  background-color: #263238;
+  background-color: #37474F;
 }
 
 .card__label--yellow {
