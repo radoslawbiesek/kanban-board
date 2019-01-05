@@ -21,7 +21,35 @@
                 </header>
             </div>
         </div>
-	</div>
+    </div>
+
+    <div id="modal-overlay" class="modal__overlay modal__overlay--show"></div>
+    <div id="modal-add-column" class="modal__content modal__content--show">
+        <button class="modal__close-button"><i class="fas fa-times"></i></button>
+        <form>
+            <label for="column-name-input">New column name:</label>
+            <input type="text" class="modal__input-field" id="column-name-input" placeholder="Column name" autofocus>  
+        </form>
+        <button id="btn-column-submit" class="modal__submit-button">Add</button>
+    </div>
+    <div id="modal-add-card" class="modal__content modal__content--show">
+        <button class="modal__close-button"><i class="fas fa-times"></i></button>
+        <form>
+            <label for="card-name-input">New card name:</label>
+            <input type="text" class="modal__input-field" id="card-name-input" placeholder="Card name" autofocus>
+            <p class="modal__input-label">Project:</p>            
+            <select class="modal__input-list">
+                <option value="blue">Blue</option>
+                <option value="red">Red</option>
+                <option value="green">Green</option>
+                <option value="yellow">Yellow</option>
+                <option value="orange">Orange</option>
+                <option value="black">Black</option>
+                <option value="grey">Grey</option>
+            </select> 
+        </form>
+        <button id="btn-card-submit" class="modal__submit-button">Add</button>
+    </div>
 
     <script id="column-template" type="x-tmpl-mustache">
         <div class="column">

@@ -1,0 +1,10 @@
+.main-nav {
+    height: 50px;
+    background-color: $bg-color-nav;
+    color: $font-color-nav;
+    &__header {
+        margin: 0;
+        margin-left: 20px;
+        line-height: 50px;
+    }
+}

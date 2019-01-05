@@ -1,0 +1,53 @@
+.column {
+    &-container,
+    &-container > div {
+        display: flex;
+        justify-content: flex-start;;
+        flex-wrap: wrap;
+        align-items: stretch;
+        @media (max-width: 680px) {
+            justify-content: center;
+        }
+    }
+
+    width: 300px;
+    min-height: 400px;
+    margin: 20px 10px;
+    padding: 0 10px 10px 10px;
+    border-radius: 4px;
+    background-color: $bg-color-column;
+    min-height: 300px;
+    color: $font-color-column;
+    position: relative;
+    &__header {
+        overflow: hidden;
+    }
+    &__title,
+    &__btn-add-column {
+        margin: 0;
+        font-size: 18px;
+        line-height: 40px;
+        font-weight: 500;
+        padding: 0;
+    }
+    &__btn-delete {
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: 5px;
+        font-size: 16px;
+        line-height: 100%;
+    }
+    &__cards-list {
+        padding: 0;
+        margin: 0;
+        min-height: 1px;
+        & li {
+            list-style-type: none;
+        }
+    }
+    &__btn-add-card {
+        height: 100%;
+        width: 100%;
+    }
+}
