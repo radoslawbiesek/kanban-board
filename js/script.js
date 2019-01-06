@@ -1,6 +1,6 @@
 'use strict';
-(function() {
-    document.addEventListener('DOMContentLoaded', function() {      
+// (function() {
+    // document.addEventListener('DOMContentLoaded', function() {      
 
         // Generate random id for a card
         function randomString() {
@@ -31,10 +31,10 @@
             this.element.querySelector('.column').addEventListener('click', function (event) {
                 switch (event.target.getAttribute('data-action')) {
                     case 'delete-column':
-                    self.removeColumn();
-                    break;
+                        self.removeColumn();
+                        break;
                     case 'add-card':
-                    self.addCard(new Card(prompt("Please enter the name of the task: ")));
+                        self.addCard(new Card(prompt("Please enter the name of the task: ")));
                 }
             });
         }
@@ -81,6 +81,24 @@
             element: document.querySelector('#board .column-container')
         };
 
+        document.querySelector('#board .column__btn-add-column').addEventListener('click', function() {
+            showModal(modalAddColumn);
+        });
+
+        document.getElementById('btn-column-submit').addEventListener('click', function() {
+            submitColumn();
+        });
+
+        function submitColumn() {
+            var columnNameInput = document.getElementById('column-name-input');
+            var name = columnNameInput.value;
+            var column = new Column(name);
+            board.addColumn(column);
+            columnNameInput.value = "";
+            hideAllModals();
+            hideOverlay();  
+        }
+
         // Init Sortable
         function initSortable(id) {
             var el = document.getElementById(id);
@@ -90,11 +108,42 @@
             });
         };
 
-        document.querySelector('#board .column__btn-add-column').addEventListener('click', function() {
-            var name = prompt('Enter a column name');
-            var column = new Column(name);
-            board.addColumn(column);
+        // MODALS
+        var modals = document.querySelectorAll('.modal__content');
+        var modalOverlay = document.getElementById('modal-overlay');
+        var modalAddCard = document.getElementById('modal-add-card');
+        var modalAddColumn = document.getElementById('modal-add-column');
+        var closeModalButtons = document.querySelectorAll('[data-action="close-modal"]');
+
+        modalOverlay.addEventListener('click', hideOverlay);
+        
+        closeModalButtons.forEach(function(button) {
+            button.addEventListener('click', hideOverlay);
+        })
+
+        modals.forEach(function(modal) {
+            modal.addEventListener('click', function(event) {
+                event.stopPropagation();
+            });
         });
+
+        function hideAllModals() {
+            modals.forEach(hideModal)
+        }
+
+        function hideModal(modal) {
+            modal.classList.remove('modal__content--show');
+        }
+
+        function hideOverlay() {
+            modalOverlay.classList.remove('modal__overlay--show');
+        }
+
+        function showModal(modal) {
+            hideAllModals();
+            modal.classList.add('modal__content--show');
+            modalOverlay.classList.add('modal__overlay--show');
+        }
 
         // Default columns and carts
         var todoColumn = new Column('To do');
@@ -122,5 +171,5 @@
         doingColumn.addCard(task3);
         doneColumn.addCard(task5);
 
-    }) 
-})();
+    // }) 
+// })();
