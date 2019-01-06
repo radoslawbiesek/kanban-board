@@ -38,7 +38,7 @@
                 <label for="card-name-input">New card name:</label>
                 <input type="text" class="modal__input-field" id="card-name-input" placeholder="Card name" autofocus>
                 <p class="modal__input-label">Project:</p>            
-                <select class="modal__input-list">
+                <select id="card-label-input" class="modal__input-list">
                     <option value="blue">Blue</option>
                     <option value="red">Red</option>
                     <option value="green">Green</option>
@@ -48,7 +48,7 @@
                     <option value="grey">Grey</option>
                 </select> 
             </form>
-            <button id="btn-card-submit" class="modal__submit-button">Add</button>
+            <button data-action="add-card" id="btn-card-submit" class="modal__submit-button">Add</button>
         </div>
     </div>
 
@@ -63,7 +63,7 @@
                 
                 </ul>
                 <div class="card card--add">
-                    <button class="column__btn-add-card" data-action="add-card"><i class="fas fa-plus"></i> Add another card</button>
+                    <button class="column__btn-add-card" data-action="show-modal"><i class="fas fa-plus"></i> Add another card</button>
                 </div>
             </section>
         </div>
@@ -71,7 +71,7 @@
 
     <script id="card-template" type="x-tmpl-mustache">
         <div class="card"> 
-          <div class="card__label card__label--blue"></div>
+          <div class="card__label card__label--{{ label }}"></div>
           <p class="card__description">{{ description }}</p>
           <button class="card__btn-delete"><i class="fas fa-times" data-action="delete-card"></i></button>       
         </div

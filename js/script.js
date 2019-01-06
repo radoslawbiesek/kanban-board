@@ -1,6 +1,6 @@
 'use strict';
-// (function() {
-    // document.addEventListener('DOMContentLoaded', function() {      
+(function() {
+    document.addEventListener('DOMContentLoaded', function() {      
 
         // Generate random id for a card
         function randomString() {
@@ -32,11 +32,23 @@
                 switch (event.target.getAttribute('data-action')) {
                     case 'delete-column':
                         self.removeColumn();
-                        break;
-                    case 'add-card':
-                        self.addCard(new Card(prompt("Please enter the name of the task: ")));
+                    case 'show-modal':
+                        showModal(modalAddCard);
+                        btnCardSubmit.addEventListener('click', function linkModal() { 
+                            submitCard(self);
+                            btnCardSubmit.removeEventListener('click', linkModal);
+                        });
                 }
             });
+        }
+
+        function submitCard(column) {
+            var name = document.getElementById('card-name-input').value || "Untitled";
+            var label = document.getElementById('card-label-input').value || "blue";
+            var card = new Card(name, label);
+            column.addCard(card);
+            hideAllModals();
+            hideOverlay();           
         }
 
         // Column methods
@@ -50,11 +62,12 @@
         };
 
         // Class Card
-        function Card(description) {
+        function Card(description, label) {
             var self = this; 
             this.id = randomString();
             this.description = description;
-            this.element = generateTemplate('card-template', { description: this.description, id: this.id }, 'li');
+            this.label = label || 'blue';
+            this.element = generateTemplate('card-template', { description: this.description, id: this.id, label: this.label }, 'li');
             
             this.element.querySelector('.card').addEventListener('click', function (event) {
                 switch (event.target.getAttribute('data-action')) {
@@ -84,20 +97,16 @@
         document.querySelector('#board .column__btn-add-column').addEventListener('click', function() {
             showModal(modalAddColumn);
         });
-
-        document.getElementById('btn-column-submit').addEventListener('click', function() {
-            submitColumn();
-        });
-
-        function submitColumn() {
+        
+        document.getElementById('btn-column-submit').addEventListener('click', function(element) {
             var columnNameInput = document.getElementById('column-name-input');
-            var name = columnNameInput.value;
+            var name = columnNameInput.value || "Untitled";
             var column = new Column(name);
             board.addColumn(column);
             columnNameInput.value = "";
             hideAllModals();
             hideOverlay();  
-        }
+        });
 
         // Init Sortable
         function initSortable(id) {
@@ -114,11 +123,18 @@
         var modalAddCard = document.getElementById('modal-add-card');
         var modalAddColumn = document.getElementById('modal-add-column');
         var closeModalButtons = document.querySelectorAll('[data-action="close-modal"]');
+        var btnCardSubmit = document.getElementById('btn-card-submit');
 
-        modalOverlay.addEventListener('click', hideOverlay);
-        
+        modalOverlay.addEventListener('click', function() {
+            hideAllModals();
+            btnCardSubmit.removeEventListener('click', linkModal);
+        });
+       
         closeModalButtons.forEach(function(button) {
-            button.addEventListener('click', hideOverlay);
+            button.addEventListener('click', function(){
+                hideAllModals();
+                btnCardSubmit.removeEventListener('click', linkModal);                
+            });
         })
 
         modals.forEach(function(modal) {
@@ -128,7 +144,8 @@
         });
 
         function hideAllModals() {
-            modals.forEach(hideModal)
+            modals.forEach(hideModal);
+            hideOverlay();
         }
 
         function hideModal(modal) {
@@ -140,7 +157,6 @@
         }
 
         function showModal(modal) {
-            hideAllModals();
             modal.classList.add('modal__content--show');
             modalOverlay.classList.add('modal__overlay--show');
         }
@@ -156,20 +172,20 @@
         board.addColumn(doneColumn);
 
         // CREATING CARDS
-        var task1 = new Card('Layout: Photo');
-        var task2 = new Card('Layout: Golden');
-        var task3 = new Card('Modul 11');
-        var task4 = new Card('Modul 12');
-        var task5 = new Card('Rock, Paper, Scissors');
-        var task6 = new Card('YDKJS book series');
+        var task1 = new Card('Layout: Photo', 'yellow');
+        var task2 = new Card('Layout: Golden', 'yellow');
+        var task3 = new Card('Modul 11', 'blue');
+        var task4 = new Card('Modul 12', 'red');
+        var task5 = new Card('Rock, Paper, Scissors', 'green');
+        var task6 = new Card('YDKJS book series', 'orange');
 
         // ADDING CARDS TO COLUMNS
-        todoColumn.addCard(task1);
+        doingColumn.addCard(task1);
         todoColumn.addCard(task2);
-        todoColumn.addCard(task4);
+        doingColumn.addCard(task4);
         todoColumn.addCard(task6);
         doingColumn.addCard(task3);
         doneColumn.addCard(task5);
 
-    // }) 
-// })();
+    }) 
+})();
