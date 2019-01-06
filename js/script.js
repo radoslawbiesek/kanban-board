@@ -32,9 +32,10 @@
                 switch (event.target.getAttribute('data-action')) {
                     case 'delete-column':
                         self.removeColumn();
+                        break;
                     case 'show-modal':
                         showModal(modalAddCard);
-                        btnCardSubmit.addEventListener('click', function linkModal() { 
+                        btnCardSubmit.addEventListener('click', function linkModal() {
                             submitCard(self);
                             btnCardSubmit.removeEventListener('click', linkModal);
                         });
