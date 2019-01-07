@@ -5,7 +5,7 @@ var myHeaders = {
 };
 var prefix = "https://cors-anywhere.herokuapp.com/";
 
-fetch(prefix + baseUrl + '/board', { header: myHeaders})
+fetch(prefix + baseUrl + '/board', { headers: myHeaders})
     .then(function(resp) {
         return resp.json();
     })

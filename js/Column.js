@@ -27,7 +27,7 @@ Column.prototype = {
     },
     removeColumn: function() {
         var self = this;
-        fetch(baserUrl + '/column' + self.id, {method: 'DELETE', headers: myHeaders})
+        fetch(prefix + baseUrl + '/column/' + self.id, {method: 'DELETE', headers: myHeaders})
             .then(function(resp) {
                 return resp.json();
             })
@@ -38,24 +38,28 @@ Column.prototype = {
 };
 
 function submitCard(column) {
+
+    var self = column;
+
     var name = document.getElementById('card-name-input').value || "Untitled";
     var label = document.getElementById('card-label-input').value || "blue";
-    var data = new FormData();
-    data.append('name', name);
-    data.append('bootcamp_kanban_column_id', self.id);
-
+    var desc = name + '|' + label;
+    var cardData = new FormData();
+    cardData.append('name', desc);
+    cardData.append('bootcamp_kanban_column_id', self.id);
+ 
     fetch(prefix + baseUrl + '/card', { 
         method: 'POST',
         headers: myHeaders,
-        body: data,
+        body: cardData,
     })
-    .then(function(resp) {
-        return resp.json();
-    })
-    .then(function(resp) {
-        var card = new Card(resp.id, name);
-        column.addCard(card);
-        hideAllModals();
-        hideOverlay(); 
-    })             
+        .then(function(resp) {
+            return resp.json();
+        })
+        .then(function(resp) {
+            var card = new Card(resp.id, desc);
+            self.addCard(card);
+            hideAllModals();
+            hideOverlay(); 
+        })             
 }

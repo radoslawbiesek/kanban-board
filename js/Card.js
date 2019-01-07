@@ -1,10 +1,10 @@
 // Class Card
-function Card(id, name, label) {
+function Card(id, desc) {
     var self = this; 
     this.id = id;
-    this.name = name || 'Untitled';
-    this.label = label || 'blue';
-    this.element = generateTemplate('card-template', { name: this.name, id: this.id, label: this.label }, 'li');
+    this.name = desc.slice(0, desc.indexOf('|')) || 'Untitled';
+    this.label = desc.slice(desc.indexOf('|') + 1) || 'blue';
+    this.element = generateTemplate('card-template', { id: this.id, name: this.name, label: this.label}, 'li');
     
     this.element.querySelector('.card').addEventListener('click', function (event) {
         switch (event.target.getAttribute('data-action')) {
@@ -18,12 +18,12 @@ function Card(id, name, label) {
 Card.prototype = {
     removeCard: function() {
         var self = this;
-        fetch(prefix + baseUrl + '/card' + self.id, {method: 'DELETE', headers: myHeaders})
+        fetch(prefix + baseUrl + '/card/' + self.id, {method: 'DELETE', headers: myHeaders})
             .then(function(resp){
                 return resp.json();
             })
             .then(function(resp) {
-                self.remove();
+                self.element.remove();
             });
     }
 };
