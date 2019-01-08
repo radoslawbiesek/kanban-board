@@ -11,11 +11,8 @@ function Column(id, name) {
                 self.removeColumn();
                 break;
             case 'show-modal':
+                btnCardSubmit.setAttribute('data-column-trigger', self.id);
                 showModal(modalAddCard);
-                btnCardSubmit.addEventListener('click', function linkModal() {
-                    submitCard(self);
-                    btnCardSubmit.removeEventListener('click', linkModal);
-                });
         }
     });
 }
@@ -37,16 +34,14 @@ Column.prototype = {
     }
 };
 
-function submitCard(column) {
-
-    var self = column;
-
+function submitCard(columnId) {
+    var column = board.columns[columnId];
     var name = document.getElementById('card-name-input').value || "Untitled";
     var label = document.getElementById('card-label-input').value || "blue";
     var desc = name + '|' + label;
     var cardData = new FormData();
     cardData.append('name', desc);
-    cardData.append('bootcamp_kanban_column_id', self.id);
+    cardData.append('bootcamp_kanban_column_id', column.id);
  
     fetch(prefix + baseUrl + '/card', { 
         method: 'POST',
@@ -58,8 +53,7 @@ function submitCard(column) {
         })
         .then(function(resp) {
             var card = new Card(resp.id, desc);
-            self.addCard(card);
-            hideAllModals();
-            hideOverlay(); 
+            column.addCard(card);
+            hideAllModals(); 
         })             
 }

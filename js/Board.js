@@ -1,7 +1,10 @@
 //  Board
 var board = {
     name: 'Kanban Board',
+    colAddColumn: document.getElementById('column-add'), 
+    columns: new Object(),
     addColumn: function(column) {
+        this.columns[column.id] = column;
         this.element.insertBefore(column.element, document.getElementById('column-add'));
         initSortable(column.id);
     },
@@ -30,8 +33,7 @@ document.getElementById('btn-column-submit').addEventListener('click', function(
         .then(function(resp){
             var column = new Column(resp.id, name);
             board.addColumn(column);
-            hideAllModals();
-            hideOverlay();  
+            hideAllModals();  
         });
 });
 

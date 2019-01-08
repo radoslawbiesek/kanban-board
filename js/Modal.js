@@ -6,15 +6,17 @@ var modalAddColumn = document.getElementById('modal-add-column');
 var closeModalButtons = document.querySelectorAll('[data-action="close-modal"]');
 var btnCardSubmit = document.getElementById('btn-card-submit');
 
+btnCardSubmit.addEventListener('click', function() {
+    submitCard(btnCardSubmit.getAttribute('data-column-trigger'));
+});
+
 modalOverlay.addEventListener('click', function() {
     hideAllModals();
-    btnCardSubmit.removeEventListener('click', linkModal);
 });
 
 closeModalButtons.forEach(function(button) {
     button.addEventListener('click', function(){
-        hideAllModals();
-        btnCardSubmit.removeEventListener('click', linkModal);                
+        hideAllModals();              
     });
 })
 
@@ -25,15 +27,9 @@ modals.forEach(function(modal) {
 });
 
 function hideAllModals() {
-    modals.forEach(hideModal);
-    hideOverlay();
-}
-
-function hideModal(modal) {
-    modal.classList.remove('modal__content--show');
-}
-
-function hideOverlay() {
+    modals.forEach(function(modal){
+        modal.classList.remove('modal__content--show');
+    });
     modalOverlay.classList.remove('modal__overlay--show');
 }
 
