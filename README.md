@@ -3,13 +3,13 @@ This application is a simple implementation of the Kanban Board created using Ja
 Inpired by [Trello](https://trello.com/).
 
 You can:
-*create and delete columns
-*create and delete cards with specified labels (projects)
-*move cards to the another columns (not supported on the server side)
+* create and delete columns
+* create and delete cards with specified labels (projects)
+* move cards to the another columns (not supported on the server side)
 
 Further development:
-*editable names of cards and columns
-*movable columns
+* editable names of cards and columns
+* movable columns
 
 ## LIVE
 Check [here.](https://radoslawbiesek.github.io/kanban-board/)
