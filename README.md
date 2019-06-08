@@ -5,7 +5,7 @@ Inpired by [Trello](https://trello.com/).
 You can:
 * create and delete columns
 * create and delete cards with specified labels (projects)
-* move cards to the another columns (not supported on the server side)
+* move card to the another column (not supported on the server side)
 
 Further development:
 * editable names of cards and columns
